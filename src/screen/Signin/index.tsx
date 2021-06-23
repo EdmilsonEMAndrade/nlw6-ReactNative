@@ -1,19 +1,23 @@
 import React from 'react';
-import { View, Text, TextInput, Image, StatusBar } from 'react-native';
+import { View, Text, Image } from 'react-native';
+import { useNavigation } from '@react-navigation/native';
 
 import IllustrationImg from '../../assets/illustration.png';
 import { styles } from './style';
 import { ButtonIcon } from '../../component/ButtonIcon';
-import DiscordImg from '../../assets/discord.png'
+import DiscordImg from '../../assets/discord.png';
+
 
 export function SingIn() {
+
+  const navigation = useNavigation();
+
+  function handleSignIn(){
+    navigation.navigate('Home');
+  }
+
   return (
-    <View style={styles.container}>
-      <StatusBar
-        barStyle='light-content'
-        backgroundColor='transparent'
-        translucent
-      />
+    <View style={styles.container}>      
       <Image
         source={IllustrationImg}
         style={styles.image}
@@ -21,9 +25,9 @@ export function SingIn() {
       />
       <View style={styles.content}>
         <Text style={styles.title}>
-          Ortganize {'\n'}
-          suas jogatinas {'\n'}
-          facilmente
+          Conecte-se {'\n'}
+          e organize {'\n'}
+          suas jogatinas 
         </Text>
         <Text style={styles.subTitle}>
           Crie grupos para jogar seus games {'\n'}
@@ -32,10 +36,9 @@ export function SingIn() {
         <ButtonIcon
           title={'Entrar com Discord'}
           image={DiscordImg}
-          activeOpacity={0.7}
+          onPress= {handleSignIn}
         />
       </View>
     </View>
-
   );
 }
